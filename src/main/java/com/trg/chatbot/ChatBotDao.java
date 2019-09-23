@@ -3,8 +3,19 @@ package com.trg.chatbot;
 import java.util.List;
 
 public interface ChatBotDao {
-	public List<Pms> getAllList();
-	public int addNewDevice(Pms pms);
-	public int removeExistingDevice(String type,String model);
-	public int addNewCustomer(User user);
+  List<PMS> getAllList();
+
+  int addNewDevice(PMS pms);
+
+  int removeExistingDevice(String type, String model);
+
+  int addNewCustomer(Customer customer);
+
+  void saveRecommendations(String contact, List<String> recommendations);
+
+  List<String> getCustomerRecommendations(String contact);
+
+  List<Customer> getAllCustomers();
+
+  List<Customer> getInterestedCustomerWithinTimePeriod(String fromDate, String toDate);
 }

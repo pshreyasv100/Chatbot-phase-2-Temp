@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface UserAssister {
 
-	public List<Pms> setUpSuggestions(List<Pms> existingSuggestion,String currentResponse,int countOfQuestion);
-	public boolean byPassQuestions(int n);
-	public List<String> setUpOptionList(List<Pms> existingSuggestion,int countOfQuestion);
-	public String fn(List<Pms> existingSuggestion,List<String> optionList,int countOfQuestion);
+  List<PMS> setUpSuggestions(List<PMS> existingSuggestion,String currentResponse,int countOfQuestion);
+  boolean byPassQuestions(int n);
+  List<String> setUpOptionList(List<PMS> existingSuggestion,int countOfQuestion);
+  String fn(List<PMS> existingSuggestion,List<String> optionList,int countOfQuestion);
 }

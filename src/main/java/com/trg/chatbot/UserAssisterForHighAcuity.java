@@ -3,39 +3,44 @@ package com.trg.chatbot;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
+
 @Component
-public class UserAssisterForHighAcuity implements UserAssister{
-	
-	QuestionnaireForHighAcuity questionnaire=new QuestionnaireForHighAcuity();
+public class UserAssisterForHighAcuity implements UserAssister {
 
-	
-	
-	@Override
-	public List<Pms> setUpSuggestions(List<Pms> existingSuggestion, String currentResponse, int countOfQuestion)  {
-		List<Pms> result = new ArrayList<>();
-		try {
-			result=Utility.narrowDownSuggestions(existingSuggestion,questionnaire.getPropertyBeingAsked(countOfQuestion),currentResponse);
-		} catch (IllegalArgumentException | SecurityException e) {
-			Logger.log("Exceptions");
-		} 
-		return result;
-	}
+  QuestionnaireForHighAcuity questionnaire = new QuestionnaireForHighAcuity();
 
-	@Override
-	public boolean byPassQuestions(int n) {
-		return (n==2); 
-	}
 
-	@Override
-	public List<String> setUpOptionList(List<Pms> existingSuggestion, int countOfQuestion) {
-		return questionnaire.setOptionList(existingSuggestion,questionnaire.getPropertyBeingAsked(countOfQuestion+1)); 
-	}
 
-	
+  @Override
+  public List<PMS> setUpSuggestions(List<PMS> existingSuggestion, String currentResponse,
+      int countOfQuestion) {
+    List<PMS> result = new ArrayList<>();
+    try {
+      result = Utility.narrowDownSuggestions(existingSuggestion,
+          questionnaire.getPropertyBeingAsked(countOfQuestion), currentResponse);
+    } catch (IllegalArgumentException | SecurityException e) {
+      Logger.log("Exceptions");
+    }
+    return result;
+  }
 
-	@Override
-	public String fn(List<Pms> existingSuggestion, List<String> optionList, int countOfQuestion) {
-		 return questionnaire.provideNextQuestion(optionList,questionnaire.getPropertyBeingAsked(countOfQuestion+1));
-	}
+  @Override
+  public boolean byPassQuestions(int n) {
+    return (n == 2);
+  }
+
+  @Override
+  public List<String> setUpOptionList(List<PMS> existingSuggestion, int countOfQuestion) {
+    return questionnaire.setOptionList(existingSuggestion,
+        questionnaire.getPropertyBeingAsked(countOfQuestion + 1));
+  }
+
+
+
+  @Override
+  public String fn(List<PMS> existingSuggestion, List<String> optionList, int countOfQuestion) {
+    return questionnaire.provideNextQuestion(optionList,
+        questionnaire.getPropertyBeingAsked(countOfQuestion + 1));
+  }
 
 }

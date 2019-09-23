@@ -3,10 +3,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
-public class PmsMapper implements RowMapper<Pms> {
+public class PmsMapper implements RowMapper<PMS> {
 		
-		public Pms mapRow(ResultSet rs, int num) throws SQLException {
-			Pms pms= new Pms();
+		public PMS mapRow(ResultSet rs, int num) throws SQLException {
+			PMS pms= new PMS();
 			pms.setType(rs.getString(1));
 			pms.setModel(rs.getString(2));
 			pms.setScreensize(rs.getString(3));
